@@ -1,0 +1,41 @@
+
+<odoo>
+    <record id="view_from_ticket" model="ir.ui.view">
+        <field name="name">Raise a Ticket</field>
+        <field name="model">ticket.raise</field>
+        <field name="arch" type="xml">
+            <form string="Book">
+                <sheet>
+                    <group>
+                            <field name="ticket_type" />
+                            <field name="employee" />
+                            <field name="message" />
+                            <field name="priority" />
+                            <field name="photo" />
+                            <field name="req_date" />
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--Tree View-->
+    <record id="view_tree_ticket" model="ir.ui.view">
+        <field name="name">Tree View</field>
+        <field name="model">ticket.raise</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ticket_type" />
+                <field name="employee" />
+                <field name="message" />
+                <field name="priority" />
+                <field name="photo" />
+                <field name="req_date" />
+            </tree>
+        </field>
+    </record>
+
+    
+</odoo>
+
+

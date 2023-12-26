@@ -1,0 +1,242 @@
+<odoo>
+    <data>
+
+        <!-- Overview List View -->
+        <record model="ir.ui.view" id="view_support_sys_list">
+            <field name="name">SupportSys List</field>
+            <field name="model">support_sys.support_sys</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="c_id"/>
+                    <field name="name"/>
+<!--                    <field name="message"/>-->
+                    <field name="image" string="Image" widget="image" options="{'size':[45,45]}"/>
+                    <field name="issue_description"/>
+                    <field name="support_type"/>
+                    <field name="assigned_employee" />
+                    <field name="status" />
+                    <field name="month_field"  string="Date"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View for SupportSys -->
+        <record model="ir.ui.view" id="view_support_sys_form">
+            <field name="name">SupportSys Form</field>
+            <field name="model">support_sys.support_sys</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                        <group>
+                            <field name="c_id"/>
+                            <field name="name"/>
+
+                            <field name="issue_description"/>
+                            <field name="month_field" string="Date"/>
+                        </group>
+                        <group>
+                            <field name="support_type"/>
+                            <field name="image" />
+                            <field name="status" />
+                            <field name="assigned_employee"/>
+                        </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action for Opening SupportSys List View -->
+        <record model="ir.actions.act_window" id="action_support_sys_list">
+            <field name="name">SupportSys Window</field>
+            <field name="res_model">support_sys.support_sys</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_support_sys_list"/>
+        </record>
+
+        <!-- Ticket List View -->
+        <!-- Ticket List View -->
+        <record model="ir.ui.view" id="view_ticket_list">
+            <field name="name">Ticket List</field>
+            <field name="model">ticket.raise</field>
+            <field name="arch" type="xml">
+                <tree string="Ticket Information">
+<!--                    <field name="name"/>-->
+                        <field name="ticket_id"/>
+                    <field name="ticket_type"/>
+                    <field name="employee"/>
+                    <field name="message"/>
+                    <field name="priority"/>
+                    
+                    <field name="photo" string="Image" widget="image" options="{'size':[45, 45]}"/>
+                    
+                    <field name="req_date"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- Form View for Ticket -->
+        <record model="ir.ui.view" id="view_ticket_form">
+            <field name="name">Ticket Form</field>
+            <field name="model">ticket.raise</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+
+                            <field name="ticket_type"/>
+                            <field name="employee"/>
+                            <field name="message"/>
+                            <field name="priority"/>
+                            <field name="req_date"/>
+                            <group>
+                            <field name="photo" string="Image" widget="image" options="{'size':[45, 45]}"/>
+                            </group>
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+     
+        <!-- Action for Opening Ticket List View -->
+        <record model="ir.actions.act_window" id="action_ticket_list">
+            <field name="name">Ticket Window</field>
+            <field name="res_model">ticket.raise</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_ticket_list"/>
+        </record>
+ 
+            <record model="ir.ui.view" id="view_employee_list">
+            <field name="name">Employee</field>
+            <field name="model">employee.details</field>
+            <field name="arch" type="xml">
+                <tree string="Employee Details">
+                
+                    <field name="employee_name"/>
+                    <field name="contact"/>
+                    <field name="address"/>
+                    <field name="department"/>
+                    <field name="position"/>
+                    <field name="salary"/>
+                    <field name="date_joined"/>
+                    
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- Form View for Ticket -->
+        <record model="ir.ui.view" id="view_employee_form">
+            <field name="name">Employee</field>
+            <field name="model">employee.details</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+
+                            
+                            <field name="employee_name"/>
+                            <field name="contact"/>
+                            <field name="address"/>
+                            <field name="department"/>
+                            <field name="position"/>
+                            <field name="salary"/>
+                            <field name="date_joined"/>
+                            
+                            <!-- Add more fields as needed -->
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+        
+       
+        <record model="ir.actions.act_window" id="action_employee_list">
+            <field name="name">Employee</field>
+            <field name="res_model">employee.details</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_employee_list"/>
+        </record>
+
+        <record id="sequence_ticket" model="ir.sequence">
+            <field name="name">Ticket Sequence</field>
+            <field name="code">ticket.raise</field>
+            <field name="prefix">Tic.No.</field>
+            <field name="padding">2</field>
+            <field name="number_increment" eval="1" />
+        </record>
+1
+        
+
+
+        <!-- Reporting Tree View -->
+        <record id="view_task_status_tree" model="ir.ui.view">
+            <field name="name">Task Status Tree View</field>
+            <field name="model">support_sys.support_sys</field>
+            <field name="arch" type="xml">
+                <tree>
+
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action for Opening Reporting Tree View -->
+        <record model="ir.actions.act_window" id="action_reporting">
+            <field name="name">Reporting</field>
+            <field name="res_model">support_sys.support_sys</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_task_status_tree"/>
+        </record>
+
+        <!-- Top Menu Item -->
+        <menuitem name="Support_Sys" id="menu_root"/>
+
+        <!-- Menu Categories -->
+        <menuitem name="Overview" id="support_sys_menu_1" parent="menu_root" action="action_support_sys_list"/>
+        <menuitem name="Ticket" id="support_sys_menu_2" parent="menu_root" action="action_ticket_list"/>
+        <menuitem name="Reporting" id="support_sys_menu_3" parent="menu_root" action="action_reporting"/>
+        <menuitem name="Configuration" id="support_sys_menu_4" parent="menu_root" action="action_support_sys_list"/>
+        <menuitem name="Employee" id="support_sys_menu_5" parent="menu_root" action="action_employee_list"/>
+
+        <!-- Dashboard Action -->
+        <record id="action_backend_dashboard" model="ir.actions.client">
+            <field name="name">Dashboard</field>
+            <field name="tag">dashboard.owl.new.registry</field>
+        </record>
+
+        <record id="action_employee_list" model="ir.actions.act_window">
+            <field name="name">Details</field>
+        </record>
+
+        <record id="action_expense_list" model="ir.actions.act_window">
+            <field name="name">Expense</field>
+        </record>
+
+        <!-- Menu item for Dashboard -->
+        <menuitem id="menu_reporting_dashboard"
+                  name="Dashboard"
+                  action="action_backend_dashboard"
+                  parent="support_sys_menu_3"
+                  sequence="1"/>
+
+        <menuitem id="menu_employee_details"
+                  name="Details"
+                  action="action_employee_list"
+                  parent="support_sys_menu_5"
+                  sequence="1"/>
+
+
+        <menuitem id="menu_employee_expense"
+                  name="Expense"
+                  action="action_expense_list"
+                  parent="support_sys_menu_5"
+                  sequence="2"/>          
+
+        
+
+   </data>
+</odoo>

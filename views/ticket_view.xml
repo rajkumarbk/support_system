@@ -1,0 +1,80 @@
+<odoo>
+    <data>
+        <template id="portal_my_invoices" name="ticket_view">
+
+            <t t-call="portal.portal_layout">
+                <t t-set="breadcrumbs_searchbar" t-value="True"/>
+                <xpath expr="//div[hasclass('addnewdata')]" position="inside"/>
+
+                <t t-call="portal.portal_searchbar">
+                    <button class="addnewdata" style="background-color: #581845; color: white; border: 2px; border-radius: 5px;" onclick="window.location.href = '/ticket_raise_form'">New Request</button>
+                    <t t-set="title">Ticket Raise</t>
+                </t>
+                <!--                <t t-if="not invoices">-->
+                <!--                    <p>There are currently no Ticket Raise for your account.</p>-->
+                <!--                </t>-->
+
+
+                <t  t-call="portal.portal_table" >
+                    <thead>
+                        <tr class="active">
+                            <th>Ticket Type</th>
+                            <th>Employer Of</th>
+                            <th>Priority</th>
+                            <th>Message</th>
+                            <th>photo</th>
+                            <th>Requested Date</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="records" t-as="data">
+                            <tr>
+                                <td><t t-out="data['ticket_type']"/></td>
+                                 <td><t t-out="data['employee']"/></td>
+                                 <td><t t-out="data['priority']"/></td>
+                                <td><t t-out="data['message']"/></td>
+                                <td><t t-out="data['photo']"/></td>
+                                <td><t t-out="data['req_date']"/></td>
+                                
+
+
+                            </tr>
+                        </t>
+                </tbody>
+                </t>
+
+                  <!-- <div id="wrap" class="container">
+                    <h1>Ticket History</h1>
+                    <t t-foreach="books" t-as="book">
+                        <div class="row">
+                            <thead>
+                                <tr class="active">
+                                    <th>S.N</th>
+                                    <th>Ticket Type</th>
+                                    <th>Employer Of</th>
+                                    <th>Message</th>
+                                    <th>photo</th>
+                                    <th>Requested Date</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td>2</td>
+                                <td><span t-field="ticket.ticket_type"/></td>
+                                <td><span t-field="ticket.employee"/></td>
+                                <td><span t-field="ticket.message"/></td>
+                                <td><span t-field="ticket.photo"/></td>
+                                <td><span t-field="ticket.req_date"/></td>
+                            </tr> -->
+                            <!-- <span t-field="book.name"/>
+                            <span t-field="book.date_published"/>
+                            <span t-field="book.publisher_id"/>
+                            <img t-if="book.image" t-att-src="'data:image/png;base64,' + book.image.decode('utf-8')" style="max-width: 100px; max-height: 100px;"/> -->
+                        <!-- </div> -->
+                    <!-- </t>
+                </div> -->
+            </t>
+        </template>
+    </data>
+</odoo>
