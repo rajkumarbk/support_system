@@ -106,6 +106,9 @@
                         <textarea name="message" rows="4"
                                   style="width: 100%; padding: 10px; margin-bottom: 16px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;"
                                   required="True"></textarea>
+                        <label for="client_email" style="font-size: 14px; margin-bottom: 8px;">Your Email:</label>
+                            <input type="email" name="client_email" required="true"
+                               style="width: 100%; padding: 10px; margin-bottom: 16px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;"/>
 
                         <!-- Photo Upload Section -->
                         <label for="photo" style="font-size: 14px; margin-bottom: 8px;">Upload Photo:</label>

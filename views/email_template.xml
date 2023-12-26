@@ -6,12 +6,12 @@
         <field name="model_id" ref="model_ticket_raise"/>
         <field name="subject">Your Ticket Has Been Raised</field>
         <field name="email_from">shresthadishan2@gmail.com</field>
-        <field name="email_to">${object.client_email}</field>
+        <field name="email_to">{{object.client_email}}</field>
         <field name="body_html">
             <![CDATA[
                 <p>Hello,</p>
-                <p>Your ticket of type ${object.ticket_type} has been raised successfully.</p>
-                <p>Details: ${object.message}</p>
+                <p>Your ticket of type {{object.ticket_type}} has been raised successfully.</p>
+                <p>Details: {{object.message}}</p>
             ]]>
         </field>
     </record>

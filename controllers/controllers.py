@@ -18,10 +18,10 @@ class UserAuthenticationController(http.Controller):
             data.append({
                 'ticket_type': ticket.ticket_type,
                 'employee': ticket.employee,
+                'priority': ticket.priority,
                 'message': ticket.message,
-                'priority':ticket.priority,
                 'nepalidatepicker': ticket.nepalidatepicker,
-                'photo': photo,
+                'photo':photo,
             })
         return http.request.render(
             "support_sys.portal_my_invoices",
@@ -32,16 +32,24 @@ class UserAuthenticationController(http.Controller):
     def authenticate_user(self, **post):
         ticket_type = post.get('ticket_type')
         employee = post.get('employee')
+        priority = post.get('priority')
         message = post.get('message')
-        priority= post.get('priority')
+        client_email= post.get('client_email')
         nepalidatepicker = post.get('nepalidatepicker')
         photo = post.get('photo')
-        client_email=post.get('client_email')
+
+        if photo:
+            # If a photo is uploaded, convert it to base64
+            photo_base64 = base64.b64encode(photo.read())
+        else:
+            photo_base64 = None
 
         ticket = request.env['ticket.raise'].sudo().create({
             'ticket_type': ticket_type,
             'employee': employee,
+            'priority':priority,
             'message': message,
+            'photo':photo_base64,
             'nepalidatepicker': nepalidatepicker,
             'client_email': client_email,  # Assign the client's email to the model's email field
         })
@@ -51,25 +59,6 @@ class UserAuthenticationController(http.Controller):
             template = request.env.ref('support_sys.email_template_ticket_raise')
             if template:
                 template.with_context(object=ticket).send_mail(ticket.id, force_send=True)
-
-        return request.redirect('/ticket_view')
-
-        if photo:
-            # If a photo is uploaded, convert it to base64
-            photo_base64 = base64.b64encode(photo.read())
-        else:
-            photo_base64 = None
-
-        # Create the ticket record
-        ticket_env = request.env['ticket.raise'].sudo()
-        ticket_env.create({
-            'ticket_type': ticket_type,
-            'employee': employee,
-            'message': message,
-            'photo': photo_base64,
-            'nepalidatepicker': nepalidatepicker,
-            'priority':priority,
-        })
 
         # Redirect to the ticket view
         return request.redirect('/ticket_view')
