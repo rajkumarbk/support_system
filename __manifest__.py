@@ -17,6 +17,7 @@
         'views/ticket_view.xml',
         'views/ticket_raise.xml',
         'views/ticket_list.xml',
+        'views/email_template.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
@@ -24,15 +25,19 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'support_sys/static/src/components/**/*.js',
-            'support_sys/static/src/components/**/*.xml',
-            # 'support_sys/static/src/scss/**/*.scss',
+            'support_sys/static/src/components/*/.js',
+            'support_sys/static/src/components/*/.xml',
+            # 'support_sys/static/src/scss/*/.scss',
             # 'support_sys/static/src/components/chart_renderer/chart_renderer.js',
             # 'support_sys/static/src/components/chart_renderer/chart_renderer.xml',
             # 'support_sys/static/src/components/kpi_card/kpi_card.js'
             # 'support_sys/static/src/components/kpi_card/kpi_card.xml'
+        ],
 
 
+        'web.assets_frontend': [
+            'support_sys/static/src/css/nepali.datepicker.v4.0.1.min.css',
         ]
+
     }
 }

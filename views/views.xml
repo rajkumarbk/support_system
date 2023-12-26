@@ -71,7 +71,7 @@
                     
                     <field name="photo" string="Image" widget="image" options="{'size':[45, 45]}"/>
                     
-                    <field name="req_date"/>
+                    <field name="nepalidatepicker"/>
                 </tree>
             </field>
         </record>
@@ -90,7 +90,7 @@
                             <field name="employee"/>
                             <field name="message"/>
                             <field name="priority"/>
-                            <field name="req_date"/>
+                            <field name="nepalidatepicker"/>
                             <group>
                             <field name="photo" string="Image" widget="image" options="{'size':[45, 45]}"/>
                             </group>

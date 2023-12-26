@@ -33,6 +33,7 @@ class support_sys(models.Model):
 class Ticket(models.Model):
     _name = 'ticket.raise'
     _description = 'ticket'
+    _inherit='mail.thread'
 
     # name = fields.Char(string='Name')
     ticket_id = fields.Char(string='Ticket Number')
@@ -44,13 +45,16 @@ class Ticket(models.Model):
     priority=fields.Selection([('urgent', 'Urgent'), ('high', 'High'), ('medium', 'Meduium'), ('low', 'Low')],
                                    string='Choose a Priority')
     photo = fields.Binary(string='photo')
-    req_date = fields.Date(string='Requested date', required=True)
+    nepalidatepicker = fields.Date(string='Requested date', required=True)
+    client_email = fields.Char(string='Client Email')
+    
     # photo_filename = fields.Char(string='photo Filename')
     @api.model
     def create(self,vals):
         print("Sequence",vals)
         vals['ticket_id'] = self.env['ir.sequence'].next_by_code("ticket.raise")
         return super(Ticket,self).create(vals)
+    
 
 
 class Employee(models.Model):

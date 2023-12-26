@@ -20,7 +20,7 @@ class UserAuthenticationController(http.Controller):
                 'employee': ticket.employee,
                 'message': ticket.message,
                 'priority':ticket.priority,
-                'req_date': ticket.req_date,
+                'nepalidatepicker': ticket.nepalidatepicker,
                 'photo': photo,
             })
         return http.request.render(
@@ -34,8 +34,25 @@ class UserAuthenticationController(http.Controller):
         employee = post.get('employee')
         message = post.get('message')
         priority= post.get('priority')
-        req_date = post.get('req_date')
+        nepalidatepicker = post.get('nepalidatepicker')
         photo = post.get('photo')
+        client_email=post.get('client_email')
+
+        ticket = request.env['ticket.raise'].sudo().create({
+            'ticket_type': ticket_type,
+            'employee': employee,
+            'message': message,
+            'nepalidatepicker': nepalidatepicker,
+            'client_email': client_email,  # Assign the client's email to the model's email field
+        })
+
+        # Send an email to the client
+        if ticket:
+            template = request.env.ref('support_sys.email_template_ticket_raise')
+            if template:
+                template.with_context(object=ticket).send_mail(ticket.id, force_send=True)
+
+        return request.redirect('/ticket_view')
 
         if photo:
             # If a photo is uploaded, convert it to base64
@@ -50,7 +67,7 @@ class UserAuthenticationController(http.Controller):
             'employee': employee,
             'message': message,
             'photo': photo_base64,
-            'req_date': req_date,
+            'nepalidatepicker': nepalidatepicker,
             'priority':priority,
         })
 

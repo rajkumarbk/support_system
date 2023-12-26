@@ -36,7 +36,7 @@
                                  <td><t t-out="data['priority']"/></td>
                                 <td><t t-out="data['message']"/></td>
                                 <td><t t-out="data['photo']"/></td>
-                                <td><t t-out="data['req_date']"/></td>
+                                <td><t t-out="data['nepalidatepicker']"/></td>
                                 
 
 
@@ -65,7 +65,7 @@
                                 <td><span t-field="ticket.employee"/></td>
                                 <td><span t-field="ticket.message"/></td>
                                 <td><span t-field="ticket.photo"/></td>
-                                <td><span t-field="ticket.req_date"/></td>
+                                <td><span t-field="ticket.nepalidatepicker"/></td>
                             </tr> -->
                             <!-- <span t-field="book.name"/>
                             <span t-field="book.date_published"/>
