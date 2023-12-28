@@ -63,7 +63,7 @@
             <field name="arch" type="xml">
                 <tree string="Ticket Information">
 <!--                    <field name="name"/>-->
-                        <field name="ticket_id"/>
+                    <field name="ticket_id"/>
                     <field name="ticket_type"/>
                     <field name="employee"/>
                     <field name="message"/>
@@ -162,6 +162,66 @@
             <field name="view_id" ref="view_employee_list"/>
         </record>
 
+<!-- expense code goes here -->
+   <record model="ir.ui.view" id="view_expense_list">
+            <field name="name">Expense</field>
+            <field name="model">employee.expense</field>
+            <field name="arch" type="xml">
+                <tree string="Expenses">
+                
+                    <field name="expense_date"/>
+                    <field name="amount"/>
+                    <field name="description"/>
+                    <field name="status"/>
+                    <field name="expense_category"/>
+                    <field name="starting_location"/>
+                    <field name="ending_location"/>
+                    <field name="bill_image"/>
+                    
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- Form View for Ticket -->
+        <record model="ir.ui.view" id="view_employee_form">
+            <field name="name">Employee</field>
+            <field name="model">employee.expense</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+
+                            
+                            <field name="expense_date"/>
+                        <field name="amount"/>
+                        <field name="description"/>
+                        <field name="status"/>
+                        <field name="expense_category"/>
+                        <field name="starting_location"/>
+                        <field name="ending_location"/>
+                        <field name="bill_image"/>
+                            
+                            <!-- Add more fields as needed -->
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+        
+       
+        <record model="ir.actions.act_window" id="action_expense_list">
+            <field name="name">Expenses</field>
+            <field name="res_model">employee.expense</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_expense_list"/>
+        </record>
+
+
+
+
+
         <record id="sequence_ticket" model="ir.sequence">
             <field name="name">Ticket Sequence</field>
             <field name="code">ticket.raise</field>
@@ -198,9 +258,9 @@
         <!-- Menu Categories -->
         <menuitem name="Overview" id="support_sys_menu_1" parent="menu_root" action="action_support_sys_list"/>
         <menuitem name="Ticket" id="support_sys_menu_2" parent="menu_root" action="action_ticket_list"/>
-        <menuitem name="Reporting" id="support_sys_menu_3" parent="menu_root" action="action_reporting"/>
-        <menuitem name="Configuration" id="support_sys_menu_4" parent="menu_root" action="action_support_sys_list"/>
-        <menuitem name="Employee" id="support_sys_menu_5" parent="menu_root" action="action_employee_list"/>
+        <menuitem name="Employee" id="support_sys_menu_3" parent="menu_root" action="action_employee_list"/>
+        <menuitem name="Reporting" id="support_sys_menu_4" parent="menu_root" action="action_reporting"/>
+        <menuitem name="Configuration" id="support_sys_menu_5" parent="menu_root" action="action_support_sys_list"/>
 
         <!-- Dashboard Action -->
         <record id="action_backend_dashboard" model="ir.actions.client">
@@ -220,20 +280,20 @@
         <menuitem id="menu_reporting_dashboard"
                   name="Dashboard"
                   action="action_backend_dashboard"
-                  parent="support_sys_menu_3"
+                  parent="support_sys_menu_4"
                   sequence="1"/>
 
         <menuitem id="menu_employee_details"
                   name="Details"
                   action="action_employee_list"
-                  parent="support_sys_menu_5"
+                  parent="support_sys_menu_3"
                   sequence="1"/>
 
 
         <menuitem id="menu_employee_expense"
                   name="Expense"
                   action="action_expense_list"
-                  parent="support_sys_menu_5"
+                  parent="support_sys_menu_3"
                   sequence="2"/>          
 
         

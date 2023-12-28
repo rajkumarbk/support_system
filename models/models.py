@@ -36,14 +36,14 @@ class Ticket(models.Model):
     _inherit='mail.thread'
 
     # name = fields.Char(string='Name')
-    ticket_id = fields.Char(string='Ticket Number')
+    ticket_id = fields.Char(string='Ticket ID')
     ticket_type = fields.Selection([('complain', 'Complain'), ('feedback', 'Feedback'), ('request', 'Request'), ('query', 'Query')],
-                                   string='Choose a Ticket')
+                                   string='Ticket Type')
     employee = fields.Selection([('DeerWalk', 'DeerWalk'), ('Techrida', 'Techrida'), ('TalentConnect', 'TalentConnect'), ('TukiLogic', 'TukiLogic'), ('EkSolution', 'EkSolution')],
-                                string='Choose an Employer')
+                                string='Employer Of')
     message = fields.Text(string='Message', required=True)
-    priority=fields.Selection([('urgent', 'Urgent'), ('high', 'High'), ('medium', 'Meduium'), ('low', 'Low')],
-                                   string='Choose a Priority')
+    priority=fields.Selection([('urgent', 'Urgent'), ('high', 'High'), ('medium', 'Medium'), ('low', 'Low')],
+                                   string='Priority')
     photo = fields.Binary(string='photo')
     nepalidatepicker = fields.Date(string='Requested date', required=True)
     client_email = fields.Char(string='Client Email')

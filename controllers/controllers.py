@@ -2,13 +2,20 @@ from odoo import http
 from odoo.http import request
 import base64
 
-class UserAuthenticationController(http.Controller):
+class HomePageController(http.Controller):
 
-    @http.route('/ticket_raise_form', type="http", auth='public', website=True)
+    @http.route('/', type="http", auth='public', website=True)
     def user_authentication_form(self, **kw):
-        return request.render('support_sys.ticket_raise_form', {})
-
-    @http.route('/ticket_view', type='http', auth='public', website=True)
+        return request.render('support_sys.homepage', {})
+    
+class ExpenseController(http.Controller):    
+    @http.route('/expense', type="http", auth='public', website=True)
+    def user_authentication_form(self, **kw):
+        return request.render('support_sys.expense', {})
+    
+class TicketController(http.Controller):    
+    @http.route('/ticket_history', type="http", auth='public', website=True)
+    
     def list_tickets(self, **kwargs):
         tickets = request.env["ticket.raise"].sudo().search([])
 
@@ -16,6 +23,7 @@ class UserAuthenticationController(http.Controller):
         for ticket in tickets:
             photo = ticket.photo.decode('utf-8') if ticket.photo else None
             data.append({
+                'ticket_id':ticket.ticket_id,
                 'ticket_type': ticket.ticket_type,
                 'employee': ticket.employee,
                 'priority': ticket.priority,
@@ -24,10 +32,10 @@ class UserAuthenticationController(http.Controller):
                 'photo':photo,
             })
         return http.request.render(
-            "support_sys.portal_my_invoices",
+            "support_sys.ticket_history",
             {"records": data}
         )
-
+    
     @http.route('/ticket_raise', type='http', auth='public', website=True)
     def authenticate_user(self, **post):
         ticket_type = post.get('ticket_type')
@@ -61,4 +69,11 @@ class UserAuthenticationController(http.Controller):
                 template.with_context(object=ticket).send_mail(ticket.id, force_send=True)
 
         # Redirect to the ticket view
-        return request.redirect('/ticket_view')
+        return request.redirect('/ticket_history')
+        
+class NewTicketController(http.Controller):   
+    @http.route('/new_ticket', type="http", auth='public', website=True)
+    def user_authentication_form(self, **kw):
+        return request.render('support_sys.new_ticket', {})
+
+   

@@ -12,12 +12,12 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'views/homepage.xml',
         'views/views.xml',
-        'views/templates.xml',
-        'views/ticket_view.xml',
-        'views/ticket_raise.xml',
-        'views/ticket_list.xml',
         'views/email_template.xml',
+        'views/expense.xml',
+        'views/ticket_history.xml',
+        'views/new_ticket.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
