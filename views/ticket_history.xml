@@ -1,0 +1,128 @@
+<odoo>
+<data>
+ <template id="ticket_history" name="ticket_history">
+            <t t-call="website.layout">
+         <style>
+
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+ 
+.sidebar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  color: white;
+}
+
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+</style>
+
+
+<div class="sidebar">
+  <a class="active" href="/"><i class="fa fa-fw fa-tachometer"/>Dashboard</a>
+  <a href="ticket_history"><i class="fa fa-fw fa-users"/>Client</a>
+  <a href="expense"><i class="fa fa-fw fa-user"/>Employee</a>
+  <a href="#about">About</a>
+</div>
+                    <button class="addnewdata" style="background-color: #581845; color: white; border: 2px; border-radius: 5px; margin-left:90%; margin-top:1%;" onclick="window.location.href = '/new_ticket'">New Request</button>
+
+<div class="container-fluid" style="width:85%; margin-left:15%; margin-top:1%;">
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4" >
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Ticket History</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive" >
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                        <tr class="active">
+                            <th>Ticket ID</th>
+                            <th>Ticket Type</th>
+                            <th>Employer Of</th>
+                            <th>Priority</th>
+
+                            <th>Message</th>
+                            <th>Photo</th>
+                            <th>Requested Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="records" t-as="data">
+                            <tr>
+                                <td>
+                                    <t t-out="data['ticket_id']"/>
+                                </td>
+                                <td>
+                                    <t t-out="data['ticket_type']"/>
+                                </td>
+                                <td>
+                                    <t t-out="data['employee']"/>
+                                </td>
+                                <td>
+                                    <t t-out="data['priority']"/>
+                                </td>
+                                <td>
+                                    <t t-out="data['message']"/>
+                                </td>
+                                
+                                <td>
+                                    <img t-if="data['photo']" t-att-src="'data:image/png;base64,'+data['photo']"
+                                         style="max-width: 50px; max-height: 50px;"/>
+                                </td>
+                                <td>
+                                    <t t-out="data['nepalidatepicker']"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </t>
+        </template>
+</data>
+</odoo>

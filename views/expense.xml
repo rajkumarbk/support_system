@@ -1,0 +1,230 @@
+<odoo>
+<data>
+ <template id="expense" name="expense">
+            <t t-call="website.layout">
+         <style>
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+}
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+ 
+.sidebar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+</style>
+
+
+<div class="sidebar">
+  <a class="active" href="/"><i class="fa fa-fw fa-tachometer"/>Dashboard</a>
+  <a href="ticket_history"><i class="fa fa-fw fa-users"/>Client</a>
+  <a href="expense"><i class="fa fa-fw fa-user"/>Employee</a>
+  <a href="#about">About</a>
+</div>
+<!-- 
+<div class="container">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="style.css">
+<style>
+
+    .error{
+        color: red;
+    }
+
+    .register{
+    background: -webkit-linear-gradient(left, #04AA6D, #00c6ff);
+    margin-top: 3%;
+    padding: 3%;
+
+}
+.register-left{
+    text-align: center;
+    color: #fff;
+    margin-top: 4%;
+}
+.register-left input{
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    width: 60%;
+    background: #f8f9fa;
+    font-weight: bold;
+    color: #383d41;
+    margin-top: 30%;
+    margin-bottom: 3%;
+    cursor: pointer;
+}
+.register-right{
+    background: #f8f9fa;
+    border-top-left-radius: 10% 50%;
+    border-bottom-left-radius: 10% 50%;
+}
+.register-left img{
+    margin-top: 15%;
+    margin-bottom: 5%;
+    width: 25%;
+    -webkit-animation: mover 2s infinite  alternate;
+    animation: mover 1s infinite  alternate;
+}
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+.register-left p{
+    font-weight: lighter;
+    padding: 12%;
+    margin-top: -9%;
+}
+.register .register-form{
+    padding: 10%;
+    margin-top: 10%;
+}
+.btnRegister{
+    float: right;
+    margin-top: 10%;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    background: #04AA6D;
+    color: #fff;
+    font-weight: 600;
+    width: 50%;
+    cursor: pointer;
+}
+.register .nav-tabs{
+    margin-top: 3%;
+    border: none;
+    background: #04AA6D;
+    border-radius: 1.5rem;
+    width: 28%;
+    float: right;
+}
+.register .nav-tabs .nav-link{
+    padding: 2%;
+    height: 34px;
+    font-weight: 600;
+    color: #fff;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+}
+.register .nav-tabs .nav-link:hover{
+    border: none;
+}
+.register .nav-tabs .nav-link.active{
+    width: 100px;
+    color:#04AA6D;
+    border: 2px solid #04AA6D;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+}
+.register-heading{
+    text-align: center;
+    margin-top: 8%;
+    margin-bottom: -15%;
+    color: #495057;
+}
+</style>
+
+<form method="post" action="" id="myForm">
+  <div class="container register">
+    <div class="form-group">
+      <label for="">Expense Date</label>
+      <input type="date" class="form-control" name="date" />
+    </div>
+    <div class="form-group">
+      <label for="">Amount</label>
+      <input type="float" class="form-control" name="amount" />
+    </div>
+
+    <div class="form-group">
+      <label for="">Status: </label>
+      <select>
+        <option value="draft">Draft</option>
+        <option value="submitted">Submitted</option>
+        <option value="approved">Approved</option>
+        <option value="rejected">Rejected</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="">Expense Category: </label>
+      <select>
+        <option value="meals">Meals</option>
+        <option value="travel">Travel</option>
+        <option value="accommodation">Accommodation</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="">Starting Location</label>
+      <input type="text" id="loc1" class="form-control" name="loc1" />
+    </div>
+
+    <div class="form-group">
+      <label for="">Ending Location</label>
+      <input type="text" id="loc2" class="form-control" name="loc2" />
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" name="desc" rows="3"></textarea>
+    </div>
+
+    <input type="submit" class="btnRegister" value="submit" />
+  </div>
+</form>
+</div> -->
+</t>
+</template>
+</data>
+</odoo>
