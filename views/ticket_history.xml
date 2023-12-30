@@ -2,67 +2,64 @@
 <data>
  <template id="ticket_history" name="ticket_history">
             <t t-call="website.layout">
-         <style>
+   <style>
+
+    #sidebar {
+      height: 100%;
+      width: 200px;
+      position: fixed;
+      background-color: #f1f1f1;
+      padding-top: 0px; /* Adjusted padding to make space for the logo */
+    }
+
+    #sidebar a {
+      padding: 16px;
+      text-decoration: none;
+      font-size: 18px;
+      color: black;
+      display: block;
+    }
+
+    #sidebar a.active {
+      background-color: #04AA6D;
+      color: white;
+    }
+
+    #sidebar a:hover:not(.active) {
+      background-color: #555;
+      color: white;
+    }
+
+    .submenu {
+      max-height: 0;
+      overflow: hidden;
+      padding-left: 20px;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .submenu a {
+      padding: 10px;
+    }
+
+  </style>
 
 
-.sidebar {
-  margin: 0;
-  padding: 0;
-  width: 200px;
-  background-color: #f1f1f1;
-  position: fixed;
-  height: 100%;
-  overflow: auto;
-}
-
-.sidebar a {
-  display: block;
-  color: black;
-  padding: 16px;
-  text-decoration: none;
-}
- 
-.sidebar a.active {
-  background-color: #04AA6D;
-  color: white;
-}
-
-.sidebar a:hover:not(.active) {
-  color: white;
-}
-
-div.content {
-  margin-left: 200px;
-  padding: 1px 16px;
-  height: 1000px;
-}
-
-@media screen and (max-width: 700px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-  .sidebar a {float: left;}
-  div.content {margin-left: 0;}
-}
-
-@media screen and (max-width: 400px) {
-  .sidebar a {
-    text-align: center;
-    float: none;
-  }
-}
-</style>
-
-
-<div class="sidebar">
-  <a class="active" href="/"><i class="fa fa-fw fa-tachometer"/>Dashboard</a>
-  <a href="ticket_history"><i class="fa fa-fw fa-users"/>Client</a>
-  <a href="expense"><i class="fa fa-fw fa-user"/>Employee</a>
-  <a href="#about">About</a>
-</div>
-                    <button class="addnewdata" style="background-color: #581845; color: white; border: 2px; border-radius: 5px; margin-left:90%; margin-top:1%;" onclick="window.location.href = '/new_ticket'">New Request</button>
+  <div id="sidebar">
+    <a href="/" ><i class="fa fa-fw fa-tachometer"/> Dashboard</a>
+    <a href="#" onclick="toggleSubMenu('clientSubMenu')"><i class="fa fa-fw fa-user" /> Client</a>
+    <div class="submenu" id="clientSubMenu">
+    <a  href="new_ticket"><i class="fa fa-fw fa-plus" /> New Request</a>
+      <a class="active" href="ticket_history"><i class="fa fa-history" /> Ticket History</a>
+      
+    </div>
+    <a href="#" onclick="toggleSubMenu('employeeSubMenu')"><i class="fa fa-fw fa-users"/> Employee</a>
+    <div class="submenu" id="employeeSubMenu">
+      <a href="expense"><i class="fa fa-fw fa-plus" /> New Expense</a>
+      <a href="expense_history"><i class="fa fa-history" /> Expense History</a>
+    </div>
+    <a href="#">Profile</a>
+    <a href="#">Settings</a>
+  </div>
 
 <div class="container-fluid" style="width:85%; margin-left:15%; margin-top:1%;">
 
@@ -78,9 +75,8 @@ div.content {
                         <tr class="active">
                             <th>Ticket ID</th>
                             <th>Ticket Type</th>
-                            <th>Employer Of</th>
+                            <th>Product</th>
                             <th>Priority</th>
-
                             <th>Message</th>
                             <th>Photo</th>
                             <th>Requested Date</th>
@@ -96,7 +92,7 @@ div.content {
                                     <t t-out="data['ticket_type']"/>
                                 </td>
                                 <td>
-                                    <t t-out="data['employee']"/>
+                                    <t t-out="data['product']"/>
                                 </td>
                                 <td>
                                     <t t-out="data['priority']"/>
@@ -121,7 +117,22 @@ div.content {
                     </div>
 
                 </div>
+  <script>
+    // Function to hide all submenus
+    function hideAllSubmenus() {
+      var submenus = document.querySelectorAll('.submenu');
+      submenus.forEach(function (submenu) {
+        submenu.style.maxHeight = '0';
+      });
+    }
 
+    // Function to toggle visibility of a submenu
+    function toggleSubMenu(subMenuId) {
+      hideAllSubmenus();
+      var subMenu = document.getElementById(subMenuId);
+      subMenu.style.maxHeight = subMenu.style.maxHeight === '0px' ? subMenu.scrollHeight + 'px' : '0';
+    }
+  </script>
             </t>
         </template>
 </data>

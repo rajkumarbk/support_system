@@ -84,7 +84,21 @@
             <div class="col-lg-3 m-1 p-0">
                 <CustomerCard class="shadow-sm" name="'ISP Support '" email="'saugat'" successRate="'20%'" unsignedCount="8" openCount="2" urgentCount="4" failCount="10"/>
             </div>
-
+        <div class="col-lg-5">
+                    <div class="row">
+                        <div class="col m-0 p-0">
+                            <div class="shadow-sm border m-2 p-4 bg-white">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h3 class="text-primary fw-bold">Monthly Sales</h3>
+                                    <div class="px-3 py-1 bg-primary cursor-pointer">
+                                        <span class="fa fa-arrow-right text-white"/>
+                                    </div>
+                                </div>
+                                <ChartRenderer type="'bar'" title="'Monthly Sales Report'"/>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
         </div>
         </div>
     </t>

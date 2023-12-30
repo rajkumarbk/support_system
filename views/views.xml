@@ -65,7 +65,7 @@
 <!--                    <field name="name"/>-->
                     <field name="ticket_id"/>
                     <field name="ticket_type"/>
-                    <field name="employee"/>
+                    <field name="product"/>
                     <field name="message"/>
                     <field name="priority"/>
                     
@@ -87,7 +87,7 @@
                         <group>
 
                             <field name="ticket_type"/>
-                            <field name="employee"/>
+                            <field name="product"/>
                             <field name="message"/>
                             <field name="priority"/>
                             <field name="nepalidatepicker"/>
@@ -96,7 +96,11 @@
                             </group>
                         </group>
                     </sheet>
-
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="message_ids"/>
+                        <field name="activity_ids"/>
+                    </div>  
                 </form>
             </field>
         </record>
@@ -149,7 +153,11 @@
                             <!-- Add more fields as needed -->
                         </group>
                     </sheet>
-
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="message_ids"/>
+                        <field name="activity_ids"/>
+                    </div>
                 </form>
             </field>
         </record>
@@ -164,19 +172,22 @@
 
 <!-- expense code goes here -->
    <record model="ir.ui.view" id="view_expense_list">
-            <field name="name">Expense</field>
+            <field name="name">Expense Request</field>
             <field name="model">employee.expense</field>
             <field name="arch" type="xml">
                 <tree string="Expenses">
                 
-                    <field name="expense_date"/>
-                    <field name="amount"/>
-                    <field name="description"/>
-                    <field name="status"/>
-                    <field name="expense_category"/>
+                    <field name="nepalidatepicker"/>
                     <field name="starting_location"/>
                     <field name="ending_location"/>
-                    <field name="bill_image"/>
+                    <field name="expense_category"/>
+                    <field name="amount"/>
+                    <field name="photo" string="Image" widget="image" options="{'size':[45, 45]}"/>
+                    <field name="description"/>
+                    
+                    
+                    
+                    
                     
                 </tree>
             </field>
@@ -184,8 +195,8 @@
 
 
         <!-- Form View for Ticket -->
-        <record model="ir.ui.view" id="view_employee_form">
-            <field name="name">Employee</field>
+        <record model="ir.ui.view" id="view_expense_form">
+            <field name="name">Employee Expense</field>
             <field name="model">employee.expense</field>
             <field name="arch" type="xml">
                 <form>
@@ -193,19 +204,16 @@
                         <group>
 
                             
-                            <field name="expense_date"/>
-                        <field name="amount"/>
-                        <field name="description"/>
-                        <field name="status"/>
-                        <field name="expense_category"/>
+                        <field name="nepalidatepicker"/>
                         <field name="starting_location"/>
                         <field name="ending_location"/>
-                        <field name="bill_image"/>
-                            
-                            <!-- Add more fields as needed -->
+                        <field name="expense_category"/>
+                        <field name="amount"/>
+                        <field name="photo" string="Image" widget="image" options="{'size':[45, 45]}"/>
+                        <field name="description"/>
                         </group>
                     </sheet>
-
+                
                 </form>
             </field>
         </record>
