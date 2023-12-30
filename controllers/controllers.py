@@ -119,7 +119,10 @@ class NewTicketController(http.Controller):
     def user_authentication_form(self, **kw):
         return request.render('support_sys.new_ticket', {})
     
-
+class ExpenseController(http.Controller):   
+    @http.route('/expense', type="http", auth='public', website=True)
+    def user_authentication_form(self, **kw):
+        return request.render('support_sys.expense', {})
     
 
    
