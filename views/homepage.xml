@@ -45,7 +45,7 @@
 
 
   <div id="sidebar">
-    <a class="active"  href="/" ><i class="fa fa-fw fa-tachometer"/> Home</a>
+    <a class="active"  href="/" ><i class="fa fa-fw fa-tachometer"/> Dashboard</a>
     <a href="#" onclick="toggleSubMenu('clientSubMenu')"><i class="fa fa-fw fa-user" /> Client</a>
     <div class="submenu" id="clientSubMenu">
     <a  href="new_ticket"><i class="fa fa-fw fa-plus" /> New Request</a>
